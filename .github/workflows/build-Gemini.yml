@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     
     container:
-      image: ghcr.io/biaogo94/cleanpadavan-RM2100/padavan-builder:latest
+      image: ghcr.io/biaogo94/cleanpadavan-NEWIFI3/padavan-builder:latest
       options: --user root
 
     steps:
