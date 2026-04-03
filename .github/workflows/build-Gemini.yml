@@ -1,4 +1,4 @@
-name: Build Newifi3 D2 (Gemini 3 Pro)
+name: Build RM2100 D2 (Gemini 3 Pro)
 
 on:
   workflow_dispatch:
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     
     container:
-      image: ghcr.io/biaogo94/cleanpadavan-newifi3/padavan-builder:latest
+      image: ghcr.io/biaogo94/cleanpadavan-RM2100/padavan-builder:latest
       options: --user root
 
     steps:
@@ -50,7 +50,7 @@ jobs:
             echo "KERNEL_VER=3.4" >> $GITHUB_ENV
             echo "REPO_URL=https://github.com/hanwckf/rt-n56u.git" >> $GITHUB_ENV
             echo "REPO_BRANCH=master" >> $GITHUB_ENV
-            echo "TARGET_PROFILE=NEWIFI3" >> $GITHUB_ENV
+            echo "TARGET_PROFILE=RM2100" >> $GITHUB_ENV
             ;;
         esac
         
@@ -140,10 +140,10 @@ jobs:
       run: |
         cd ${{ env.WORK_DIR }}/trunk
         # 复制配置文件
-        if [ -f "configs/templates/NEWIFI3.config" ]; then
-            cp -f configs/templates/NEWIFI3.config .config
+        if [ -f "configs/templates/RM2100.config" ]; then
+            cp -f configs/templates/RM2100.config .config
         else
-            cp -f configs/templates/newifi3.config .config
+            cp -f configs/templates/RM2100.config .config
         fi
 
         # 修改驱动版本和开启 KVR
@@ -206,9 +206,9 @@ jobs:
       if: success()
       with:
         tag_name: v${{ env.BUILD_DATE }}-${{ env.KERNEL_VER }}
-        name: Newifi3 D2 Padavan ${{ env.KERNEL_VER }} (${{ env.BUILD_DATE }})
+        name: RM2100 D2 Padavan ${{ env.KERNEL_VER }} (${{ env.BUILD_DATE }})
         body: |
-           Newifi3 D2 Padavan Auto Build
+           RM2100 D2 Padavan Auto Build
            Kernel: ${{ env.KERNEL_VER }}
         # 相对路径匹配
         files: output_firmware/*.trx
